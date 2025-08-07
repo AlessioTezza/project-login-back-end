@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
   </head>
   <body>
 <div class="d-flex align-items-center justify-content-center vh-100">
-  <form class="form-signin" accept-charset="utf-8" method="POST" action="">
+  <form class="form-signin" accept-charset="utf-8" method="POST" action="login.php">
      <h2 class="form-signin-heading ">USUARIO</h2>
      <input type="text" class="form-control" id="username" name="username" placeholder="Usuario o email" required autofocus />
      <br />
@@ -36,7 +36,8 @@
             errorMessages.innerHTML=message;
         }
   btn.addEventListener("click", (e) => {
-            e.preventDefault();
+
+           // e.preventDefault();
             const passValue = document.getElementById("password").value;
             const userValue = document.getElementById("username").value;
             //data es un objeto
