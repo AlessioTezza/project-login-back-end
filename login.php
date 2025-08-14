@@ -27,7 +27,7 @@
   }
   
 
-  $sql="select * from users where (username=? or email=?) and password=?";
+  $sql="select * from users where (username=? or email=?) and password=? and active='SI';";
   
 // Use de sentencias prepared
 // Uso de POO- Programacion Orientada a Objeto   nombre_objeto->propiedad/metodo
