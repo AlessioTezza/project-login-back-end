@@ -49,7 +49,8 @@
         include_once("config_products.php");
         include_once("db.class.php");
         $link = new Db();
-        $sql="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products  INNER JOIN categories ON products.id_category = categories.id_category";
+        $sql="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products  INNER JOIN categories ON products.id_category = categories.id_category 
+order by categories.category_name, products.price";
         $stmt=$link->run($sql);
         $data=$stmt->fetchAll();
         //recuperar un producto y llevarlo a li
