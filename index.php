@@ -44,86 +44,34 @@
       </div>
       <i class="fa badge" id="badge" value=0><i class="fa-solid fa-cart-shopping fa-lg"></i></i>
 </div>
-    <ul class="gallery">
-      <li>
-      <div class="box">
-      <figure>
-        <img src="img/pizza-rucula-y-jamon-crudo.png" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>Rucula & Jamon crudo </h3>
-              <p>$ 13000</p>
-              <time>23/05/2024</time>
-    </figcaption>
-      </figure>
-      <button class="button" value="1" data-price="13000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-       <li>
-      <div class="box">
-      <figure>
-        <img src="img/pizza-4-quesos.jpg" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>4 quesos </h3>
-              <p>$ 14000</p>
-              <time>23/05/2024</time>
-    </figcaption>
-      </figure>
-      <button class="button" value="2" data-price="14000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-      <li>
-      <div class="box">
-      <figure>
-        <img src="img/pizza-muzzarella.png" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>Muzzarella </h3>
-              <p>$ 15000</p>
-              <time>23/05/2025</time>
-    </figcaption>
-      </figure>
-      <button class="button" value="3" data-price="15000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-      <li>
-       <div class="box">
-      <figure>
-        <img src="img/pizza-napolitana.jpg" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>Napolitana </h3>
-              <p>$ 16000</p>
-              <time>23/05/2025</time>
-    </figcaption>
-      </figure>
-       <button class="button" value="4" data-price="16000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-      <li>
-       <div class="box">
-      <figure>
-        <img src="img/pizza-de-albahaca.jpg" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>Albahaca </h3>
-              <p>$ 17000</p>
-              <time>23/05/2025</time>
-    </figcaption>
-      </figure>
-       <button class="button" value="5" data-price="17000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-       <li>
-       <div class="box">
-      <figure>
-        <img src="img/fugazzeta_cleanup.jpg" alt="pizza-rucula-y-jamon-crudo">
-         <figcaption>
-              <h3>Fugazzeta </h3>
-              <p>$ 18000</p>
-              <time>23/05/2025</time>
-    </figcaption>
-      </figure>
-       <button class="button" value="6" data-price="18000"> Añadir al carrito <i class="fa-solid fa-cart-shopping"></i></button>
-      </div>
-      </li>
-       
+ <ul class="gallery">
+        <?php
+        include_once("config_products.php");
+        include_once("db.class.php");
+        $link = new Db();
+        $sql="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products  INNER JOIN categories ON products.id_category = categories.id_category";
+        $stmt=$link->run($sql);
+        $data=$stmt->fetchAll();
+        //recuperar un producto y llevarlo a li
+        foreach($data as $row){
+            ?>
+            <li>
+                <div class="box">
+                <figure><img src="<?php echo $row['image'] ?>" class="img-pizzas">
+                <figcaption>
+                <h3><?php echo $row['product_name']?> </h3>
+                <p><?php echo $row ['price']?> </p>
+                <time><?php echo $row ['start_date']?></time>
+            </figcaption>
+            </figure>
+            <button class="button" value=" value=<?php echo $row['id_product']  ?>" data-price="<?php echo $row['price']  ?>">Añadir al carrito
+                <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            </button>
+            </div>
+            </li>
+            <?php
+        }
+        ?>
     </ul>
 </div>
 
