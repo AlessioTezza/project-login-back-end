@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
@@ -25,7 +26,17 @@
         </div>
         <!-- nav>ul>li*4>a -->
       <nav>
-    <ul>
+    <ul><!-- font-awesome -->
+       <nav class="navtop">
+<nav class="navtop">
+        <div>
+            <h1>Panel Administrador</h1>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
       <li><a href="#">HOME</a></li>
       <li><a href="nosotros.html">NOSOTROS</a></li>
       <li><a href="sucursales.html">SUCURSALES & DELIVERY</a></li>
@@ -49,8 +60,9 @@
         include_once("config_products.php");
         include_once("db.class.php");
         $link = new Db();
-        $sql="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products  INNER JOIN categories ON products.id_category = categories.id_category 
-order by categories.category_name, products.price";
+        $sql="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name 
+        FROM products  INNER JOIN categories ON products.id_category = categories.id_category 
+        order by categories.category_name, products.price";
         $stmt=$link->run($sql);
         $data=$stmt->fetchAll();
         //recuperar un producto y llevarlo a li
